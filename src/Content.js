@@ -25,6 +25,13 @@ class Content extends Component {
         firebase.initializeApp(config);
     }
 
+    
+    componentWillMount() {
+        var ref = firebase.database().ref("imasges");
+        this.bindAsArray(ref, "images");
+    }
+    
+
     openLightbox(event, obj) {
         this.setState({
             currentImage: obj.index,
@@ -59,12 +66,22 @@ class Content extends Component {
     }
 
     render() {
-        var database = firebase.database().ref().child('images');
+
+        // var thisVariable;
+
+        // var database1 = firebase.database().ref().child('images').once('value').then(function(snapshot) {
+        //         if (snapshot.val()==="ready"){
+        //             console.log("yes!");
+        //         } else{
+        //             console.log('no!');
+        //         }   
+        // });
+
         var PHOTO_SET = [];
 
+        var database = firebase.database().ref().child('images');
 
         database.on('child_added', function(data) {
-
         // database.on('value', snap => {
         //     var values = Object.values(snap.val());
 

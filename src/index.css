@@ -18,32 +18,21 @@ iframe {
     border-radius: 25px;
     box-shadow: 2px 2px 1px #222;
     position: relative;
-    /* width: 0%; */
-    /* Set your desired with */
     z-index: 1;
-    /* Make sure its above other items. */
     top: 10%;
     left: 38%;
-    /* right: 30%; */
-    /* bottom: 5%; */
     margin: auto;
-    /* padding: 20px; */
 }
 
 .content {
-    /* position: absolute; */
     width: 80%;
-    /* Set your desired with */
     z-index: 2;
-    /* Make sure its above other items. */
     top: 5%;
     left: 1%;
     right: 5%;
     bottom: 5%;
     margin-top: 10%;
-    /* Changes with height. */
     margin-left: -10%;
-    /* Your width divided by 2. */
     margin: auto;
     padding: 20px;
     font-family: sans-serif;
@@ -58,7 +47,6 @@ iframe {
     position: relative;
     height: auto;
     min-height: 100% !important;
-    /* flex-grow: 1; */
 }
 
 p.imageTitle {
