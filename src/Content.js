@@ -93,20 +93,16 @@ class Content extends Component {
     
         return (
             <div >
-                {/* <p> Heres our App </p> */}
-                <div>
+                {/* <div> */}
                     <div className='video'>
-                        {/* <iframe src='http://nobody.better-than.tv:8081' width={320} height={240} name="iframe" /> */}
+                        <iframe src='http://nobody.better-than.tv:8081' width={320} height={240} name="iframe" />
                         {/* <iframe src='http://nobody.better-than.tv:8081'name="iframe"/> */}
-                        <iframe src='10.0.0.70:8081'name="iframe"/>
+                        {/* <iframe src='10.0.0.70:8081'name="iframe"/> */}
                     </div>
                     <div className='content'>
-                        <p className='imageTitle'> Heres the photo gallery </p>
-                        {/* <Gallery photos={PHOTO_SET} */}
                         <Gallery photos={this.state.photos}
                         onClick={this.openLightbox}
                         columns={6} />
-                        {/* <Lightbox images={PHOTO_SET} */}
                         <Lightbox images={this.state.photos}
                             showThumbnails={true}
                             onClose={this.closeLightbox}
@@ -117,7 +113,7 @@ class Content extends Component {
                             onClickThumbnail={this.gotoImage}
                             backdropClosesModal={true}
                         />
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
         );
