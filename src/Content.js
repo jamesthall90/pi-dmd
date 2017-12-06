@@ -5,14 +5,18 @@ import './App.css';
 import * as firebase from 'firebase';
 
 class Content extends Component {
+
+    
     constructor() {
         super();
-        this.state = { currentImage: 0 };
+        this.state = { currentImage: 0, photos: [] };
         this.closeLightbox = this.closeLightbox.bind(this);
         this.openLightbox = this.openLightbox.bind(this);
         this.gotoNext = this.gotoNext.bind(this);
         this.gotoPrevious = this.gotoPrevious.bind(this);
         this.gotoImage = this.gotoImage.bind(this);
+
+        this.getPictures = this.getPictures.bind(this);
 
         var config = {
             apiKey: "AIzaSyCJ1kMDSlMiGFSvIzWatnhKTuv598Dmk3I",
@@ -25,12 +29,28 @@ class Content extends Component {
         firebase.initializeApp(config);
     }
 
-    
-    componentWillMount() {
-        var ref = firebase.database().ref("imasges");
-        this.bindAsArray(ref, "images");
+    getPictures() {
+        
+        var database = firebase.database().ref().child('images');
+
+        database.on('value', snapshot => {
+
+            var PHOTO_LIST = [];
+
+            snapshot.forEach((snap) => {
+
+                PHOTO_LIST.push({
+                    src: snap.val(),
+                    width: 1,
+                    height: 1
+                });
+            });
+  
+            this.setState({
+                photos : PHOTO_LIST
+            });
+        });
     }
-    
 
     openLightbox(event, obj) {
         this.setState({
@@ -65,61 +85,41 @@ class Content extends Component {
         return {elapsed: 0};
     }
 
+    componentDidMount(){
+        this.getPictures();
+    }
+
     render() {
-
-        // var thisVariable;
-
-        // var database1 = firebase.database().ref().child('images').once('value').then(function(snapshot) {
-        //         if (snapshot.val()==="ready"){
-        //             console.log("yes!");
-        //         } else{
-        //             console.log('no!');
-        //         }   
-        // });
-
-        var PHOTO_SET = [];
-
-        var database = firebase.database().ref().child('images');
-
-        database.on('child_added', function(data) {
-        // database.on('value', snap => {
-        //     var values = Object.values(snap.val());
-
-            // for (var val in values) {
-                PHOTO_SET.push({
-                    src: data.val(),
-                    width: 1,
-                    height: 1
-                });
-            }
-        );
-
-    // console.log(PHOTO_SET);
-    return (
-        <div >
-            {/* <p> Heres our App </p> */}
-            <div>
+    
+        return (
+            <div >
+                {/* <p> Heres our App </p> */}
                 <div>
-                    <iframe src='http://nobody.better-than.tv:8081' width={320} height={240} name="iframe" />
-                </div>
-                <div className='content'>
-                    <p className='imageTitle'> Heres the photo gallery </p>
-                    <Gallery photos={PHOTO_SET}
-                    onClick={this.openLightbox}
-                    columns={6} />
-                    <Lightbox images={PHOTO_SET}
-                        showThumbnails={true}
-                        onClose={this.closeLightbox}
-                        onClickPrev={this.gotoPrevious}
-                        onClickNext={this.gotoNext}
-                        currentImage={this.state.currentImage}
-                        isOpen={this.state.lightboxIsOpen}
-                        onClickThumbnail={this.gotoImage}
-                        backdropClosesModal={true}
-                    />
+                    <div className='video'>
+                        {/* <iframe src='http://nobody.better-than.tv:8081' width={320} height={240} name="iframe" /> */}
+                        {/* <iframe src='http://nobody.better-than.tv:8081'name="iframe"/> */}
+                        <iframe src='10.0.0.70:8081'name="iframe"/>
+                    </div>
+                    <div className='content'>
+                        <p className='imageTitle'> Heres the photo gallery </p>
+                        {/* <Gallery photos={PHOTO_SET} */}
+                        <Gallery photos={this.state.photos}
+                        onClick={this.openLightbox}
+                        columns={6} />
+                        {/* <Lightbox images={PHOTO_SET} */}
+                        <Lightbox images={this.state.photos}
+                            showThumbnails={true}
+                            onClose={this.closeLightbox}
+                            onClickPrev={this.gotoPrevious}
+                            onClickNext={this.gotoNext}
+                            currentImage={this.state.currentImage}
+                            isOpen={this.state.lightboxIsOpen}
+                            onClickThumbnail={this.gotoImage}
+                            backdropClosesModal={true}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
         );
     }
 }
