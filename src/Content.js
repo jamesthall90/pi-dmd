@@ -100,7 +100,9 @@ class Content extends Component {
                         {/* <iframe src='10.0.0.70:8081'name="iframe"/> */}
                     </div>
                     <div className='content'>
-                        <Gallery photos={this.state.photos}
+                        <div>
+                        <Gallery className="gal" 
+                        photos={this.state.photos}
                         onClick={this.openLightbox}
                         columns={6} />
                         <Lightbox images={this.state.photos}
@@ -113,6 +115,7 @@ class Content extends Component {
                             onClickThumbnail={this.gotoImage}
                             backdropClosesModal={true}
                         />
+                        </div>
                     {/* </div> */}
                 </div>
             </div>
