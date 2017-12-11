@@ -18,6 +18,7 @@ class Content extends Component {
 
         this.getPictures = this.getPictures.bind(this);
 
+        // Initialize Firebase
         var config = {
             apiKey: "AIzaSyCJ1kMDSlMiGFSvIzWatnhKTuv598Dmk3I",
             authDomain: "pi-dvr.firebaseapp.com",
@@ -95,16 +96,15 @@ class Content extends Component {
             <div >
                 {/* <div> */}
                     <div className='video'>
-                        <iframe src='http://nobody.better-than.tv:8081' width={320} height={240} name="iframe" />
-                        {/* <iframe src='http://nobody.better-than.tv:8081'name="iframe"/> */}
-                        {/* <iframe src='10.0.0.70:8081'name="iframe"/> */}
+                        <iframe src='http://10.0.0.70:8081/' width={320} height={240} name="iframe" />
                     </div>
                     <div className='content'>
                         <div>
-                        <Gallery className="gal" 
-                        photos={this.state.photos}
-                        onClick={this.openLightbox}
-                        columns={6} />
+                        <Gallery 
+                            photos={this.state.photos}
+                            onClick={this.openLightbox}
+                            columns={6} 
+                        />
                         <Lightbox images={this.state.photos}
                             showThumbnails={true}
                             onClose={this.closeLightbox}
