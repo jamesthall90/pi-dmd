@@ -1,6 +1,6 @@
 ## Pi-DVR
 
-Pi-DVR is web GUI for a streaming webcam / surveillance camera, created using <i>create-react-app</i> and <i>React Router 4</i>. The web GUI stored on an Apache2-based web server on a Raspberry Pi, which is routed to a Dynamic DNS host <a href="http://nobody.better-than.tv/"><b><i>nobody.better-than.tv</i></b></a>
+Pi-DVR is web GUI for a streaming webcam / surveillance camera, created using <i>React.JS</i> via <i>create-react-app</i>. The web GUI stored on an Apache2-based web server on a Raspberry Pi, which is routed to a Dynamic DNS host <a href="http://nobody.better-than.tv/"><b><i>nobody.better-than.tv</i></b></a>
 
 The camera, which is connected to a Raspberry Pi, will use Motion, a software motion detector (see https://github.com/Motion-Project/motion), to handle its motion detection capabilities. 
 
